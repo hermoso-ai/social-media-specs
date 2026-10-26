@@ -1,0 +1,63 @@
+{
+  "about": "Where each app paints its own interface over a full-screen frame. Every box is [x, y, width, height] as fractions of the frame (0 to 1), from the top-left. Keep text, logos and the product out of these boxes.",
+  "checked": "2026-10",
+  "zones": [
+    {
+      "id": "tiktok",
+      "name": "TikTok feed (9:16)",
+      "frame": { "width": 1080, "height": 1920 },
+      "blocked": [
+        { "label": "top bar", "box": [0, 0, 1, 0.09] },
+        { "label": "bottom nav", "box": [0, 0.91, 1, 0.09] },
+        { "label": "action buttons", "box": [0.78, 0.40, 0.22, 0.50] },
+        { "label": "caption and handle", "box": [0, 0.72, 0.78, 0.19] }
+      ],
+      "method": "Measured off the app's layout in September 2026 and kept generous. TikTok also publishes safe-zone overlays for ads in TikTok Ads Manager."
+    },
+    {
+      "id": "instagram-reels",
+      "name": "Instagram Reels (9:16)",
+      "frame": { "width": 1080, "height": 1920 },
+      "blocked": [
+        { "label": "top bar", "box": [0, 0, 1, 0.08] },
+        { "label": "bottom nav", "box": [0, 0.90, 1, 0.10] },
+        { "label": "action buttons", "box": [0.80, 0.42, 0.20, 0.48] },
+        { "label": "caption and handle", "box": [0, 0.74, 0.80, 0.16] }
+      ],
+      "method": "Measured off the app's layout in September 2026 and kept generous."
+    },
+    {
+      "id": "youtube-shorts",
+      "name": "YouTube Shorts (9:16)",
+      "frame": { "width": 1080, "height": 1920 },
+      "blocked": [
+        { "label": "top bar", "box": [0, 0, 1, 0.08] },
+        { "label": "bottom nav", "box": [0, 0.86, 1, 0.14] },
+        { "label": "action buttons", "box": [0.82, 0.44, 0.18, 0.42] },
+        { "label": "title and channel", "box": [0, 0.76, 0.82, 0.10] }
+      ],
+      "method": "Measured off the app's layout in September 2026 and kept generous."
+    },
+    {
+      "id": "meta-stories-reels-ad",
+      "name": "Meta Story and Reels ads (9:16)",
+      "frame": { "width": 1440, "height": 2560 },
+      "blocked": [
+        { "label": "top 14%", "box": [0, 0, 1, 0.14] },
+        { "label": "bottom 35%", "box": [0, 0.65, 1, 0.35] },
+        { "label": "left 6%", "box": [0, 0, 0.06, 1] },
+        { "label": "right 6%", "box": [0.94, 0, 0.06, 1] }
+      ],
+      "method": "Meta's ads guide: leave about 14% at the top, 35% at the bottom and 6% at each side free of text and logos.",
+      "source": "https://www.facebook.com/business/ads-guide/update/image/instagram-story"
+    },
+    {
+      "id": "youtube-banner",
+      "name": "YouTube channel banner",
+      "frame": { "width": 2048, "height": 1152 },
+      "safe": { "label": "visible on every device", "box": [0.1985, 0.3533, 0.6030, 0.2934] },
+      "method": "YouTube's channel branding help: the centre 1235 x 338 of a 2048 x 1152 banner shows everywhere; the rest is cropped on phones.",
+      "source": "https://support.google.com/youtube/answer/10456525"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "about": "Text length limits for organic posts, per channel and field. Each row says how the platform counts (the unit) and where the number comes from.",
+  "checked": "2026-10",
+  "units": {
+    "codepoints": "Unicode code points. An emoji like a thumbs-up is 1, a family emoji built from several people is several.",
+    "graphemes": "What a reader sees as one character. Any emoji, flags and skin tones included, is 1.",
+    "utf8-bytes": "UTF-8 bytes. A Latin letter is 1, most accented letters 2, Chinese, Japanese and Korean 3, an emoji 4.",
+    "utf16": "UTF-16 code units, what JavaScript's String.length returns. An emoji is usually 2.",
+    "x-weighted": "X's own weighting: most Latin, Greek, Cyrillic and Hebrew characters count 1, everything else (including Chinese, Japanese, Korean and every emoji) counts 2, and every link counts 23 whatever its real length.",
+    "threads": "Threads' rule: each character counts 1, except an emoji, which counts as many as its UTF-8 bytes (usually 4)."
+  },
+  "limits": [
+    {
+      "id": "x.post",
+      "platform": "X",
+      "field": "Post text",
+      "kind": "body",
+      "max": 280,
+      "unit": "x-weighted",
+      "extended": {
+        "max": 25000,
+        "when": "the posting account has X Premium"
+      },
+      "source": "https://docs.x.com/fundamentals/counting-characters",
+      "notes": "280 on an ordinary account. 25,000 was measured on a Premium account (25,000 accepted, 25,001 refused); X's API spec itself puts no maxLength on text."
+    },
+    {
+      "id": "threads.post",
+      "platform": "Threads",
+      "field": "Post text",
+      "kind": "body",
+      "max": 500,
+      "unit": "threads",
+      "source": "https://developers.facebook.com/docs/threads/posts",
+      "notes": "Emoji count by their UTF-8 bytes, so one emoji uses about 4 of the 500. At most 5 unique links per post (refused with THREADS_API__LINK_LIMIT_EXCEEDED since December 2025).",
+      "maxLinks": 5
+    },
+    {
+      "id": "instagram.caption",
+      "platform": "Instagram",
+      "field": "Caption",
+      "kind": "body",
+      "max": 2200,
+      "unit": "codepoints",
+      "maxHashtags": 30,
+      "maxMentions": 20,
+      "source": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media",
+      "notes": "Instagram's reference: 'Maximum 2200 characters, 30 hashtags, and 20 @ tags.' The feed shows about two lines before 'more', so the point belongs in the first line."
+    },
+    {
+      "id": "facebook.post",
+      "platform": "Facebook",
+      "field": "Post text",
+      "kind": "body",
+      "max": 63206,
+      "unit": "codepoints",
+      "source": null,
+      "notes": "Facebook's widely published Page post limit. Meta does not state it on a current reference page."
+    },
+    {
+      "id": "linkedin.post",
+      "platform": "LinkedIn",
+      "field": "Post text",
+      "kind": "body",
+      "max": 3000,
+      "unit": "codepoints",
+      "source": "https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/posts-api",
+      "notes": "The Posts API refuses over-length text with FIELD_LENGTH_TOO_LONG rather than cutting it. 3,000 is the length the LinkedIn composer allows; the API page names the error, not the number."
+    },
+    {
+      "id": "pinterest.title",
+      "platform": "Pinterest",
+      "field": "Pin title",
+      "kind": "title",
+      "max": 100,
+      "unit": "codepoints",
+      "source": "https://developers.pinterest.com/docs/api/v5/pins-create",
+      "notes": "The feed may show only the first 40 characters."
+    },
+    {
+      "id": "pinterest.description",
+      "platform": "Pinterest",
+      "field": "Pin description",
+      "kind": "body",
+      "max": 800,
+      "unit": "codepoints",
+      "source": "https://developers.pinterest.com/docs/api/v5/pins-create",
+      "notes": "Descriptions do not show in the home or search feed."
+    },
+    {
+      "id": "youtube.title",
+      "platform": "YouTube",
+      "field": "Video title",
+      "kind": "title",
+      "max": 100,
+      "unit": "codepoints",
+      "source": "https://developers.google.com/youtube/v3/docs/videos",
+      "notes": "Titles may not contain < or >."
+    },
+    {
+      "id": "youtube.description",
+      "platform": "YouTube",
+      "field": "Description",
+      "kind": "body",
+      "max": 5000,
+      "unit": "utf8-bytes",
+      "source": "https://developers.google.com/youtube/v3/docs/videos",
+      "notes": "YouTube documents 5,000 bytes. In a live API test in August 2026 a 9,021-byte Japanese description was accepted and stored whole, so enforcement is looser than the docs; under 5,000 bytes is the safe target. Only the first lines show before 'Show more'."
+    },
+    {
+      "id": "youtube.tags",
+      "platform": "YouTube",
+      "field": "Tags, combined",
+      "kind": "tags",
+      "max": 500,
+      "unit": "codepoints",
+      "source": "https://developers.google.com/youtube/v3/docs/videos",
+      "notes": "All tags together, commas included. A tag containing a space counts as if wrapped in quotes, so it costs 2 extra."
+    },
+    {
+      "id": "tiktok.video-caption",
+      "platform": "TikTok",
+      "field": "Video caption",
+      "kind": "body",
+      "max": 2200,
+      "unit": "utf16",
+      "source": "https://developers.tiktok.com/doc/content-posting-api-reference-direct-post",
+      "notes": "A video and a photo post have different caps. A caption written for a photo post can be too long once a video is attached."
+    },
+    {
+      "id": "tiktok.photo-title",
+      "platform": "TikTok",
+      "field": "Photo post title",
+      "kind": "title",
+      "max": 90,
+      "unit": "utf16",
+      "source": "https://developers.tiktok.com/doc/content-posting-api-reference-photo-post"
+    },
+    {
+      "id": "tiktok.photo-description",
+      "platform": "TikTok",
+      "field": "Photo post caption",
+      "kind": "body",
+      "max": 4000,
+      "unit": "utf16",
+      "source": "https://developers.tiktok.com/doc/content-posting-api-reference-photo-post"
+    },
+    {
+      "id": "bluesky.post",
+      "platform": "Bluesky",
+      "field": "Post text",
+      "kind": "body",
+      "max": 300,
+      "unit": "graphemes",
+      "maxBytes": 3000,
+      "source": "https://github.com/bluesky-social/atproto/blob/main/packages/api/lexicons/app/bsky/feed/post.json",
+      "notes": "Two caps at once, from the app.bsky.feed.post lexicon: maxGraphemes 300 and maxLength 3000 (UTF-8 bytes)."
+    },
+    {
+      "id": "telegram.message",
+      "platform": "Telegram",
+      "field": "Text message",
+      "kind": "body",
+      "max": 4096,
+      "unit": "utf16",
+      "source": "https://core.telegram.org/bots/api#sendmessage",
+      "notes": "Counted after entities (bold, links) are parsed."
+    },
+    {
+      "id": "telegram.caption",
+      "platform": "Telegram",
+      "field": "Caption with media",
+      "kind": "body",
+      "max": 1024,
+      "unit": "utf16",
+      "source": "https://core.telegram.org/bots/api#sendphoto",
+      "notes": "Attaching media drops the budget from 4,096 to 1,024."
+    },
+    {
+      "id": "google-business.post",
+      "platform": "Google Business Profile",
+      "field": "Post text",
+      "kind": "body",
+      "max": 1500,
+      "unit": "codepoints",
+      "source": null,
+      "notes": "1,500 is the Business Profile editor's limit. The API reference documents no cap on summary, so a longer post may go through the API; treat 1,500 as the safe target."
+    }
+  ],
+  "kinds": {
+    "body": "The main text of a post: caption, description or body.",
+    "title": "A separate title field.",
+    "tags": "A tag list."
+  }
+}

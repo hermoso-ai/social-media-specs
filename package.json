@@ -1,0 +1,66 @@
+{
+  "name": "social-media-specs",
+  "version": "1.0.0",
+  "description": "Every social and ad platform's real limits as data: caption and ad-copy lengths (counted the way each platform counts), image and video sizes, aspect ratios and safe zones. Sourced, tested, zero dependencies, with a CLI.",
+  "type": "module",
+  "main": "./src/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./data/*.json": "./data/*.json",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "social-media-specs": "bin/cli.js"
+  },
+  "files": [
+    "src",
+    "data",
+    "bin",
+    "index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "readme": "node scripts/readme-tables.mjs",
+    "test": "node scripts/build.mjs --check && node scripts/readme-tables.mjs --check && node --test test/specs.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "social-media",
+    "character-limit",
+    "caption",
+    "ad-copy",
+    "image-size",
+    "aspect-ratio",
+    "safe-zone",
+    "instagram",
+    "tiktok",
+    "youtube",
+    "linkedin",
+    "x",
+    "twitter",
+    "threads",
+    "bluesky",
+    "pinterest",
+    "meta-ads",
+    "google-ads",
+    "marketing"
+  ],
+  "license": "MIT",
+  "author": "Hermoso <hello@hermoso.ai> (https://hermoso.ai)",
+  "homepage": "https://github.com/hermoso-ai/social-media-specs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hermoso-ai/social-media-specs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hermoso-ai/social-media-specs/issues"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "about": "Text limits for paid ads, per platform and field. 'max' is a hard cap the platform refuses past. 'recommended' is the length the platform says avoids truncation; longer text is allowed but may be cut off.",
+  "checked": "2026-10",
+  "rules": {
+    "plain": "Every character counts 1.",
+    "wide": "Chinese, Japanese and Korean characters count 2.",
+    "wide+emoji": "Chinese, Japanese and Korean characters and emoji count 2."
+  },
+  "platforms": [
+    {
+      "id": "google-search",
+      "name": "Google Ads responsive search ad",
+      "source": "https://support.google.com/google-ads/answer/7684791",
+      "notes": "Up to 15 headlines and 4 descriptions.",
+      "fields": [
+        { "id": "headline", "name": "Headline", "max": 30, "rule": "wide", "count": [3, 15] },
+        { "id": "description", "name": "Description", "max": 90, "rule": "wide", "count": [2, 4] },
+        { "id": "path1", "name": "Display path 1", "max": 15, "rule": "wide" },
+        { "id": "path2", "name": "Display path 2", "max": 15, "rule": "wide" }
+      ]
+    },
+    {
+      "id": "google-display",
+      "name": "Google Ads responsive display ad",
+      "source": "https://support.google.com/google-ads/answer/17090561",
+      "notes": "Up to 5 headlines, 5 descriptions, one long headline and one business name.",
+      "fields": [
+        { "id": "headline", "name": "Headline", "max": 30, "rule": "plain", "count": [1, 5] },
+        { "id": "long-headline", "name": "Long headline", "max": 90, "rule": "plain" },
+        { "id": "description", "name": "Description", "max": 90, "rule": "plain", "count": [1, 5] },
+        { "id": "business-name", "name": "Business name", "max": 25, "rule": "plain" }
+      ]
+    },
+    {
+      "id": "microsoft-search",
+      "name": "Microsoft Advertising responsive search ad",
+      "source": "https://learn.microsoft.com/en-us/advertising/campaign-management-service/responsivesearchad",
+      "notes": "3 to 15 headlines and 2 to 4 descriptions. Chinese, Japanese and Korean characters and emoji count double, so a headline fits 15 of them.",
+      "fields": [
+        { "id": "headline", "name": "Headline", "max": 30, "rule": "wide+emoji", "count": [3, 15] },
+        { "id": "description", "name": "Description", "max": 90, "rule": "wide+emoji", "count": [2, 4] },
+        { "id": "path1", "name": "Path 1", "max": 15, "rule": "wide+emoji" },
+        { "id": "path2", "name": "Path 2", "max": 15, "rule": "wide+emoji" }
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta (Facebook and Instagram) ads",
+      "source": "https://www.facebook.com/business/help/223409425500940",
+      "notes": "Meta publishes recommended lengths, not caps. Longer text is allowed but may be cut off, and some placements cut shorter still.",
+      "fields": [
+        { "id": "primary-text", "name": "Primary text", "recommended": 125, "rule": "plain" },
+        { "id": "headline", "name": "Headline", "recommended": 40, "rule": "plain" },
+        { "id": "description", "name": "Description", "recommended": 25, "rule": "plain" }
+      ]
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn Sponsored Content (single image)",
+      "source": "https://www.linkedin.com/help/lms/answer/a426534",
+      "notes": "Every field has a hard maximum and a shorter recommended length so the text is not truncated.",
+      "fields": [
+        { "id": "intro-text", "name": "Introductory text", "max": 3000, "recommended": 150, "rule": "plain" },
+        { "id": "headline", "name": "Headline", "max": 200, "recommended": 70, "rule": "plain" },
+        { "id": "description", "name": "Description", "max": 300, "recommended": 100, "rule": "plain" }
+      ]
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok In-Feed ad",
+      "source": "https://ads.tiktok.com/help/article/tiktok-reservation-in-feed-ads-reach-frequency",
+      "notes": "Up to 4 lines of ad text show before 'See more'. TikTok suggests staying within 100 characters (50 in Chinese, Japanese or Korean, which count 2).",
+      "fields": [
+        { "id": "ad-text", "name": "Ad text", "recommended": 100, "rule": "wide" },
+        { "id": "display-name", "name": "Display name", "max": 20, "rule": "wide", "source": "https://ads.tiktok.com/help/article/video-ads-specifications" }
+      ]
+    },
+    {
+      "id": "pinterest",
+      "name": "Pinterest ad",
+      "source": "https://help.pinterest.com/en/business/article/pinterest-product-specs",
+      "notes": "The feed may show only the first 40 characters of a title (30 in double-byte scripts). Descriptions do not show in the home or search feed.",
+      "fields": [
+        { "id": "title", "name": "Title", "max": 100, "recommended": 40, "rule": "plain" },
+        { "id": "description", "name": "Description", "max": 800, "rule": "plain" }
+      ]
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit image ad",
+      "source": "https://business.reddithelp.com/s/article/image-ad-specifications",
+      "notes": "Reddit recommends 100 characters or fewer for the headline, 80 or fewer to be safer from truncation.",
+      "fields": [
+        { "id": "headline", "name": "Headline", "max": 300, "recommended": 100, "rule": "plain" },
+        { "id": "display-url", "name": "Display URL", "max": 100, "rule": "plain" }
+      ]
+    },
+    {
+      "id": "x",
+      "name": "X ad",
+      "source": "https://help.x.com/en/business-and-advertising/creative-ad-specifications",
+      "notes": "Each link in the post text costs 23 characters, whatever its length. A card headline over about 50 characters may wrap to two lines with an ellipsis.",
+      "fields": [
+        { "id": "post-text", "name": "Post text", "max": 280, "rule": "plain", "linkLength": 23 },
+        { "id": "card-headline", "name": "Website card headline", "max": 70, "recommended": 50, "rule": "plain" }
+      ]
+    }
+  ]
+}

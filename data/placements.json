@@ -1,0 +1,447 @@
+{
+  "about": "Image and video specs per placement. Ratios are width / height. 'aspect.outside' says what the platform does with a shape outside the accepted range: crop it, refuse it, or show it with bars (letterbox).",
+  "checked": "2026-10",
+  "placements": [
+    {
+      "id": "instagram-post",
+      "platform": "Instagram",
+      "name": "Instagram feed post (posted from the app)",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1440
+      },
+      "aspect": {
+        "recommended": "3:4",
+        "min": 0.75,
+        "max": 1.91,
+        "outside": "crop"
+      },
+      "minWidth": 320,
+      "notes": "Stored at 1080 wide. 1080 x 1440 (3:4) is the tallest the app takes and fills the 3:4 grid tile exactly; 1080 x 1350 (4:5), 1080 x 1080 square and 1080 x 566 horizontal also work. Under 320 wide is enlarged, over 1080 is sized down.",
+      "source": "https://help.instagram.com/1631821640426723"
+    },
+    {
+      "id": "instagram-post-api",
+      "platform": "Instagram",
+      "name": "Instagram feed post (published through the API or a scheduler)",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1350
+      },
+      "aspect": {
+        "recommended": "4:5",
+        "min": 0.8,
+        "max": 1.91,
+        "outside": "refuse"
+      },
+      "maxImageBytes": 8388608,
+      "formats": [
+        "jpeg"
+      ],
+      "notes": "The publishing API still stops at 4:5, so a 3:4 image the app accepts can be refused here. JPEG only, 8 MB.",
+      "source": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media"
+    },
+    {
+      "id": "instagram-grid",
+      "platform": "Instagram",
+      "name": "Instagram profile grid tile",
+      "media": [
+        "image",
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1440
+      },
+      "aspect": {
+        "recommended": "3:4",
+        "min": 0.75,
+        "max": 0.75,
+        "outside": "crop"
+      },
+      "notes": "The grid previews every post as a 3:4 tile (measured on instagram.com, October 2026). A 4:5 post loses about 3% off each side, a square about 12.5%.",
+      "source": "https://www.threads.com/@mosseri/post/DFBmq7ySDvi"
+    },
+    {
+      "id": "instagram-story",
+      "platform": "Instagram",
+      "name": "Instagram Story",
+      "media": [
+        "image",
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 0.5625,
+        "outside": "letterbox"
+      },
+      "maxImageBytes": 8388608,
+      "maxVideoBytes": 104857600,
+      "minDurationSeconds": 3,
+      "maxDurationSeconds": 60,
+      "notes": "Limits are for API publishing: JPEG images up to 8 MB, videos 3 to 60 seconds and up to 100 MB.",
+      "source": "https://developers.facebook.com/docs/instagram-platform/instagram-graph-api/reference/ig-user/media"
+    },
+    {
+      "id": "instagram-reel",
+      "platform": "Instagram",
+      "name": "Instagram Reel",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 1.91,
+        "outside": "letterbox"
+      },
+      "minShortSide": 720,
+      "minFps": 30,
+      "maxVideoBytes": 314572800,
+      "minDurationSeconds": 3,
+      "maxDurationSeconds": 900,
+      "notes": "Accepts 1.91:1 to 9:16, but only 9:16 fills the screen. Cover photo 420 x 654. Duration and size limits are for API publishing (up to 15 minutes, 300 MB, 23 to 60 fps).",
+      "source": "https://help.instagram.com/1038071743007909"
+    },
+    {
+      "id": "meta-feed-ad",
+      "platform": "Meta ads",
+      "name": "Facebook and Instagram feed ad",
+      "media": [
+        "image",
+        "video"
+      ],
+      "export": {
+        "width": 1440,
+        "height": 1800
+      },
+      "aspect": {
+        "recommended": "4:5",
+        "min": 0.8,
+        "max": 1.91,
+        "outside": "crop"
+      },
+      "minWidth": 600,
+      "maxImageBytes": 31457280,
+      "maxVideoBytes": 4294967296,
+      "minDurationSeconds": 1,
+      "maxDurationSeconds": 14460,
+      "notes": "Facebook Feed lists 4:5 only (3% tolerance) and at least 600 wide; Instagram feed takes 4:5 to 1.91:1 at least 500 wide. Images 30 MB, video up to 241 minutes and 4 GB.",
+      "source": "https://www.facebook.com/business/ads-guide/update/image/facebook-feed"
+    },
+    {
+      "id": "meta-story-ad",
+      "platform": "Meta ads",
+      "name": "Facebook and Instagram Story ad",
+      "media": [
+        "image",
+        "video"
+      ],
+      "export": {
+        "width": 1440,
+        "height": 2560
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 0.5625,
+        "outside": "letterbox"
+      },
+      "minWidth": 500,
+      "maxImageBytes": 31457280,
+      "maxVideoBytes": 4294967296,
+      "maxDurationSeconds": 3600,
+      "safeZone": "meta-stories-reels-ad",
+      "notes": "Keep about 14% at the top, 35% at the bottom and 6% at each side free of text and logos.",
+      "source": "https://www.facebook.com/business/ads-guide/update/image/instagram-story"
+    },
+    {
+      "id": "meta-reels-ad",
+      "platform": "Meta ads",
+      "name": "Instagram and Facebook Reels ad",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1440,
+        "height": 2560
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 0.5625,
+        "outside": "letterbox"
+      },
+      "maxVideoBytes": 4294967296,
+      "maxDurationSeconds": 900,
+      "safeZone": "meta-stories-reels-ad",
+      "notes": "Up to 15 minutes and 4 GB, same 14% / 35% / 6% margins as Story ads.",
+      "source": "https://www.facebook.com/business/ads-guide/update/video/instagram-reels"
+    },
+    {
+      "id": "youtube-thumbnail",
+      "platform": "YouTube",
+      "name": "YouTube thumbnail",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 3840,
+        "height": 2160
+      },
+      "aspect": {
+        "recommended": "16:9",
+        "min": 1.7778,
+        "max": 1.7778,
+        "outside": "crop"
+      },
+      "minWidth": 640,
+      "maxImageBytes": 52428800,
+      "formats": [
+        "jpeg",
+        "png"
+      ],
+      "notes": "2 MB when uploaded from a phone, 50 MB from a computer. 1280 x 720 still works. Shorts thumbnails are 9:16 at 2160 x 3840.",
+      "source": "https://support.google.com/youtube/answer/72431"
+    },
+    {
+      "id": "youtube-banner",
+      "platform": "YouTube",
+      "name": "YouTube channel banner",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 2560,
+        "height": 1440
+      },
+      "aspect": {
+        "recommended": "16:9",
+        "min": 1.7778,
+        "max": 1.7778,
+        "outside": "crop"
+      },
+      "minWidth": 2048,
+      "minHeight": 1152,
+      "maxImageBytes": 6291456,
+      "safeZone": "youtube-banner",
+      "notes": "Text and logos in the centre 1235 x 338 at the minimum size (about 1544 x 423 at 2560 x 1440).",
+      "source": "https://support.google.com/youtube/answer/10456525"
+    },
+    {
+      "id": "youtube-video",
+      "platform": "YouTube",
+      "name": "YouTube video",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1920,
+        "height": 1080
+      },
+      "aspect": {
+        "recommended": "16:9",
+        "min": 1.7778,
+        "max": 1.7778,
+        "outside": "letterbox"
+      },
+      "notes": "1920 x 1080 for 1080p, 3840 x 2160 for 4K. The player resizes other shapes rather than cropping them.",
+      "source": "https://support.google.com/youtube/answer/6375112"
+    },
+    {
+      "id": "youtube-short",
+      "platform": "YouTube",
+      "name": "YouTube Short",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 1,
+        "outside": "refuse"
+      },
+      "maxDurationSeconds": 180,
+      "notes": "Square or vertical, up to 3 minutes. A horizontal video is not a Short.",
+      "source": "https://support.google.com/youtube/answer/12779649"
+    },
+    {
+      "id": "tiktok-video",
+      "platform": "TikTok",
+      "name": "TikTok video",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1920
+      },
+      "aspect": {
+        "recommended": "9:16",
+        "min": 0.5625,
+        "max": 1.7778,
+        "outside": "letterbox"
+      },
+      "minShortSide": 360,
+      "maxLongSide": 4096,
+      "maxVideoBytes": 32212254720,
+      "maxDurationSeconds": 3600,
+      "safeZone": "tiktok",
+      "notes": "TikTok Studio takes up to 30 GB and 60 minutes. Through the API: 360 to 4096 px per side, 23 to 60 fps, up to 4 GB.",
+      "source": "https://developers.tiktok.com/doc/content-posting-api-media-transfer-guide"
+    },
+    {
+      "id": "tiktok-infeed-ad",
+      "platform": "TikTok ads",
+      "name": "TikTok In-Feed ad",
+      "media": [
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1920
+      },
+      "shapes": [
+        {
+          "ratio": "9:16",
+          "minWidth": 540,
+          "minHeight": 960
+        },
+        {
+          "ratio": "16:9",
+          "minWidth": 960,
+          "minHeight": 540
+        },
+        {
+          "ratio": "1:1",
+          "minWidth": 640,
+          "minHeight": 640
+        }
+      ],
+      "maxVideoBytes": 524288000,
+      "maxDurationSeconds": 600,
+      "safeZone": "tiktok",
+      "notes": "MP4, MOV, MPEG, 3GP or AVI, up to 500 MB and 10 minutes.",
+      "source": "https://ads.tiktok.com/help/article/video-ads-specifications"
+    },
+    {
+      "id": "linkedin-image",
+      "platform": "LinkedIn",
+      "name": "LinkedIn image post",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1350
+      },
+      "aspect": {
+        "recommended": "4:5",
+        "min": 0.8,
+        "max": 3,
+        "outside": "crop"
+      },
+      "minWidth": 552,
+      "minHeight": 276,
+      "maxImageBytes": 5242880,
+      "notes": "Between 3:1 and 4:5; outside that it is centred and cropped to the nearest allowed ratio.",
+      "source": "https://www.linkedin.com/help/linkedin/answer/a527229"
+    },
+    {
+      "id": "x-image",
+      "platform": "X",
+      "name": "X image",
+      "media": [
+        "image",
+        "video"
+      ],
+      "export": {
+        "width": 1080,
+        "height": 1080
+      },
+      "shapes": [
+        {
+          "ratio": "1:1",
+          "minWidth": 1080,
+          "minHeight": 1080
+        },
+        {
+          "ratio": "4:5",
+          "minWidth": 1440,
+          "minHeight": 1800
+        },
+        {
+          "ratio": "2:3",
+          "minWidth": 1080,
+          "minHeight": 1620
+        },
+        {
+          "ratio": "16:9",
+          "minWidth": 1920,
+          "minHeight": 1080
+        },
+        {
+          "ratio": "9:16",
+          "minWidth": 1080,
+          "minHeight": 1920
+        },
+        {
+          "ratio": "1.91:1",
+          "minWidth": 2064,
+          "minHeight": 1080
+        }
+      ],
+      "shapesAreRecommendations": true,
+      "maxImageBytes": 5242880,
+      "maxGifBytes": 15728640,
+      "maxVideoBytes": 8589934592,
+      "maxDurationSeconds": 1200,
+      "notes": "X publishes no size for ordinary posts; the shapes are its ad specs. Images 5 MB, GIFs 15 MB, video 20 minutes and 8 GB without Premium.",
+      "source": "https://docs.x.com/x-api/media/quickstart/best-practices"
+    },
+    {
+      "id": "pinterest-pin",
+      "platform": "Pinterest",
+      "name": "Pinterest standard Pin",
+      "media": [
+        "image"
+      ],
+      "export": {
+        "width": 1000,
+        "height": 1500
+      },
+      "aspect": {
+        "recommended": "2:3",
+        "min": 0.6667,
+        "max": 0.6667,
+        "outside": "crop"
+      },
+      "maxImageBytes": 20971520,
+      "formats": [
+        "png",
+        "jpeg"
+      ],
+      "notes": "20 MB on desktop, 32 MB in the app. A Pin taller than 2:3 may be cut off in the feed.",
+      "source": "https://help.pinterest.com/en/business/article/pinterest-product-specs"
+    }
+  ]
+}
